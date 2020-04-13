@@ -4,10 +4,12 @@ import app from "./base.js"
 export const AuthContext = React.createContext()
 
 export const AuthProvider = ({ children }) => {
-    const [currentUser, setCurrentUser ] = useState(null)
+    const [ currentUser, setCurrentUser ] = useState(null)
 
     useEffect(() => {
-        app.auth().onAuthStateChanged(setCurrentUser)
+        app.auth().onAuthStateChanged((user) =>{
+            setCurrentUser(user)
+        })
 
     }, [])
 
