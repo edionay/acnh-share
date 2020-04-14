@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-const Song = ({ song, owned, index }) => {
+const Song = ({ playSong, song, owned, index }) => {
 	const [selected, setSelected] = useState(owned);
-	const audio = new Audio(`./assets/songs/${song.title}.mp3`);
 
 	return (
 		<div
@@ -16,10 +15,8 @@ const Song = ({ song, owned, index }) => {
 		>
 			<input
 				onClick={() => {
+					playSong(song.title);
 					setSelected(!selected);
-					selected ? audio.pause() : audio.play();
-					// audio.play();
-					// console.log(selected);
 				}}
 				className="Input"
 				id={index}
