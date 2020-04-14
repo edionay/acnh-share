@@ -8,7 +8,24 @@ import "./App.css";
 
 function App() {
 	return (
-		<SongList songs={songs} userSongs={userSongs} />
+		<>
+			<div
+				style={{
+					height: "40vh",
+					width: "100vw",
+					background: "url(./assets/header-background.png)",
+					backgroundRepeat: "repeat-x",
+					position: "fixed",
+					top: 0,
+					zIndex: 1,
+				}}
+			></div>
+			<SongList
+				style={{ paddingTop: "30vh" }}
+				songs={songs}
+				userSongs={userSongs}
+			/>
+		</>
 
 		// <div className="App">
 		// 	<header className="App-header">

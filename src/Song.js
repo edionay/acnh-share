@@ -2,15 +2,13 @@ import React, { useState } from "react";
 
 const Song = ({ song, owned, index }) => {
 	const [selected, setSelected] = useState(owned);
-	// const audio = new Audio(
-	// 	"https://nookipedia.com/w/images/f/fb/NH_BGM_Audio_090_Disco_Hifi.flac"
-	// );
+	const audio = new Audio(`./assets/songs/${song.title}.mp3`);
 
 	return (
 		<div
 			style={{
 				display: "inline-block",
-				width: 200 + "px",
+				width: 20 + "%",
 				height: 200 + "px",
 				margin: 10 + "px",
 			}}
@@ -19,10 +17,9 @@ const Song = ({ song, owned, index }) => {
 			<input
 				onClick={() => {
 					setSelected(!selected);
+					selected ? audio.pause() : audio.play();
+					// audio.play();
 					// console.log(selected);
-
-					// selected ? audio.pause() : audio.play();
-					// // audio.play();
 				}}
 				className="Input"
 				id={index}
