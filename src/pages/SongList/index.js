@@ -1,116 +1,36 @@
 import React from "react";
-
-const songs = [
-	`Agent K.K.`,
-	`Aloha K.K.`,
-	`Animal City`,
-	`Bubblegum K.K.`,
-	`Café K.K.`,
-	`Comrade K.K.`,
-	`DJ K.K.`,
-	`Drivin'`,
-	`Farewell`,
-	`Forest Life`,
-	`Go K.K. Rider`,
-	`Hypno K.K.`,
-	`I Love You`,
-	`Imperial K.K.`,
-	`K.K. Adventure`,
-	`K.K. Aria`,
-	`K.K. Ballad`,
-	`K.K. Bazaar`,
-	`K.K. Birthday`,
-	`K.K. Blues`,
-	`K.K. Bossa`,
-	`K.K. Calypso`,
-	`K.K. Casbah`,
-	`K.K. Chorale`,
-	`K.K. Condor`,
-	`K.K. Country`,
-	`K.K. Cruisin'`,
-	`K.K. D&B`,
-	`K.K. Dirge`,
-	`K.K. Disco`,
-	`K.K. Dixie`,
-	`K.K. Étude`,
-	`K.K. Faire`,
-	`K.K. Flamenco`,
-	`K.K. Folk`,
-	`K.K. Fusion`,
-	`K.K. Groove`,
-	`K.K. Gumbo`,
-	`K.K. House`,
-	`K.K. Island`,
-	`K.K. Jazz`,
-	`K.K. Jongara`,
-	`K.K. Lament`,
-	`K.K. Love Song`,
-	`K.K. Lullaby`,
-	`K.K. Mambo`,
-	`K.K. Marathon`,
-	`K.K. March`,
-	`K.K. Metal`,
-	`K.K. Milonga`,
-	`K.K. Moody`,
-	`K.K. Oasis`,
-	`K.K. Parade`,
-	`K.K. Ragtime`,
-	`K.K. Rally`,
-	`K.K. Reggae`,
-	`K.K. Rock`,
-	`K.K. Rockabilly`,
-	`K.K. Safari`,
-	`K.K. Salsa`,
-	`K.K. Samba`,
-	`K.K. Ska`,
-	`K.K. Sonata`,
-	`K.K. Song`,
-	`K.K. Soul`,
-	`K.K. Steppe`,
-	`K.K. Stroll`,
-	`K.K. Swing`,
-	`K.K. Synth`,
-	`K.K. Tango`,
-	`K.K. Technopop`,
-	`K.K. Waltz`,
-	`K.K. Western`,
-	`King K.K.`,
-	`Lucky K.K.`,
-	`Marine Song 2001`,
-	`Mountain Song`,
-	`Mr. K.K.`,
-	`My Place`,
-	`Neapolitan`,
-	`Only Me`,
-	`Pondering`,
-	`Rockin' K.K.`,
-	`Señor K.K. (Changed the name into "K.K. Mariachi")`,
-	`Soulful K.K.`,
-	`Space K.K.`,
-	`Spring Blossoms`,
-	`Stale Cupcakes`,
-	`Steep Hill`,
-	`Surfin' K.K.`,
-	`The K. Funk`,
-	`To the Edge`,
-	`Two Days Ago`,
-	`Wandering`,
-	`Welcome Horizons`,
-];
+import Song from "../../Song";
+import songs from "../../songs-mock";
+import userSongs from "../../user-songs-mock";
 
 const SongList = () => {
+	const playSong = (songTitle) => {
+		if (audio) audio.pause();
+		audio = new Audio(`./assets/songs/${songTitle}.mp3`);
+		audio.play();
+	};
 
-    return (
-        <div>
+	let audio;
+
+	return (
+		<div
+			style={{
+				background: `url("./assets/main-background.png")`,
+				// paddingLeft: "15vw",
+				paddingTop: "40vh",
+				width: "100vw",
+			}}
+		>
 			{songs.map((song, index) => (
-				<div key={index}>
-					<input id={index} type="checkbox"></input>
-					<label for={index}>{song}</label>
-				</div>
+				<Song
+					playSong={playSong}
+					key={index}
+					index={index}
+					song={song}
+					owned={userSongs[song.title]}
+				/>
 			))}
 		</div>
-    )
-
-}
-
-export default SongList
+	);
+};
+export default SongList;
