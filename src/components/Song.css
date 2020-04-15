@@ -1,0 +1,16 @@
+.song-card {
+	display: inline-block;
+	width: 20vw;
+	/* height: 200px; */
+	padding: 10px;
+}
+
+.song-card:hover .options {
+	display: block;
+}
+
+.options {
+	position: absolute;
+	bottom: 0;
+	display: none;
+}

@@ -1,7 +1,7 @@
-import React from "react";
-import Song from "../../Song";
-import songs from "../../songs-mock";
-import userSongs from "../../user-songs-mock";
+import React, { useState } from "react";
+import Song from "../../components/Song";
+import songs from "../../data/songs-mock";
+import userSongs from "../../data/user-songs-mock";
 
 const SongList = () => {
 	const playSong = (songTitle) => {
@@ -10,19 +10,23 @@ const SongList = () => {
 		audio.play();
 	};
 
+	const pauseSong = (songTitle) => {
+		if (audio) audio.pause();
+	};
+
 	let audio;
 
 	return (
 		<div
 			style={{
 				background: `url("./assets/main-background.png")`,
-				// paddingLeft: "15vw",
-				paddingTop: "40vh",
+				paddingTop: "30vh",
 				width: "100vw",
 			}}
 		>
 			{songs.map((song, index) => (
 				<Song
+					pauseSong={pauseSong}
 					playSong={playSong}
 					key={index}
 					index={index}
