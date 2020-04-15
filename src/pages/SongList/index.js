@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Song from "../../components/Song";
 import songs from "../../data/songs-mock";
 import userSongs from "../../data/user-songs-mock";
@@ -19,9 +19,9 @@ const SongList = () => {
 	return (
 		<div
 			style={{
-				background: `url("./assets/main-background.png")`,
 				paddingTop: "30vh",
-				width: "100vw",
+				width: "100%",
+				textAlign: "center"
 			}}
 		>
 			{songs.map((song, index) => (

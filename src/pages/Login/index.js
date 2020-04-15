@@ -5,6 +5,8 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import app from "../../base";
 import { AuthContext } from "../../Auth";
 
+import "./Login.css"
+
 const Login = () => {
 	const { currentUser } = useContext(AuthContext);
 
@@ -18,8 +20,7 @@ const Login = () => {
 	}
 
 	return (
-		<div>
-			<h1>Log in</h1>
+		<div className="Login-form">
 			<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={app.auth()} />
 		</div>
 	);

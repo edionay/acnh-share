@@ -7,8 +7,6 @@ const Song = ({ playSong, pauseSong, song, owned, index }) => {
 	const [playing, setPlaying] = useState(false);
 	const [ownedSongs, setOwnedSongs] = useState(userSongs);
 
-	const showOptions = () => {};
-
 	const removeSong = (songTitle) => {
 		ownedSongs[songTitle] = false;
 		setOwnedSongs(ownedSongs);
@@ -34,7 +32,7 @@ const Song = ({ playSong, pauseSong, song, owned, index }) => {
 				style={{
 					display: "block",
 					background: `url("assets/covers/${song.title}.png")`,
-					height: 200 + "px",
+					// height: 200 + "px",
 					backgroundSize: "cover",
 					filter: `${isOwned ? "grayscale(0)" : "grayscale(1)"}`,
 				}}
