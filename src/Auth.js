@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react"
-import app from "./base.js"
+import React, { useEffect, useState } from "react";
+import app from "./base.js";
 
-export const AuthContext = React.createContext()
+export const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [ currentUser, setCurrentUser ] = useState(null)
+	const [currentUser, setCurrentUser] = useState(null);
 
-    useEffect(() => {
-        app.auth().onAuthStateChanged((user) =>{
-            setCurrentUser(user)
-        })
+	useEffect(() => {
+		app.auth().onAuthStateChanged((user) => {
+			console.log(user);
+			setCurrentUser(user);
+		});
+	}, []);
 
-    }, [])
-
-    return(
-        <AuthContext.Provider value={{currentUser}}>
-            {children}
-        </AuthContext.Provider>
-    )
-}
+	return (
+		<AuthContext.Provider value={{ currentUser }}>
+			{children}
+		</AuthContext.Provider>
+	);
+};

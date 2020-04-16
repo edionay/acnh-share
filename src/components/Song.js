@@ -1,22 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import userSongs from "../data/user-songs-mock";
 import "./Song.css";
 
+import api from "../api/firebase";
+import { AuthContext } from "../Auth";
+
 const Song = ({ playSong, pauseSong, song, owned, index }) => {
+	const { currentUser } = useContext(AuthContext);
+
 	const [isOwned, setIsOwned] = useState(owned);
 	const [playing, setPlaying] = useState(false);
 	const [ownedSongs, setOwnedSongs] = useState(userSongs);
 
-	const removeSong = (songTitle) => {
-		ownedSongs[songTitle] = false;
+	const removeSong = () => {
+		ownedSongs[song.title] = false;
 		setOwnedSongs(ownedSongs);
 		setIsOwned(false);
+		api.unregisterSong(currentUser.uid, song.title);
 	};
 
-	const addSong = (songTitle) => {
-		ownedSongs[songTitle] = true;
+	const addSong = () => {
+		ownedSongs[song.title] = true;
 		setOwnedSongs(ownedSongs);
 		setIsOwned(true);
+		api.registerSong(currentUser.uid, song.title);
 	};
 
 	return (
@@ -59,9 +66,9 @@ const Song = ({ playSong, pauseSong, song, owned, index }) => {
 						</button>
 					)}
 					{isOwned ? (
-						<button onClick={() => removeSong(song.title)}>Remover</button>
+						<button onClick={() => removeSong()}>Remover</button>
 					) : (
-						<button onClick={() => addSong(song.title)}>Adicionar</button>
+						<button onClick={() => addSong()}>Adicionar</button>
 					)}
 				</div>
 			</label>
