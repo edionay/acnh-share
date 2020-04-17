@@ -1,66 +1,62 @@
-import React, { useState, useContext } from "react";
-import userSongs from "../data/user-songs-mock";
-import "./Song.css";
+import React, { useState, useContext } from "react"
+import userSongs from "../data/user-songs-mock"
+import "./Song.css"
 
-import api from "../api/firebase";
-import { AuthContext } from "../Auth";
+import api from "../api/firebase"
+import { AuthContext } from "../Auth"
 
 const Song = ({ playSong, pauseSong, song, owned, index }) => {
-	const { currentUser } = useContext(AuthContext);
+	const { currentUser } = useContext(AuthContext)
 
-	const [isOwned, setIsOwned] = useState(owned);
-	const [playing, setPlaying] = useState(false);
-	const [ownedSongs, setOwnedSongs] = useState(userSongs);
+	const [isOwned, setIsOwned] = useState(owned)
+	const [playing, setPlaying] = useState(false)
+	const [ownedSongs, setOwnedSongs] = useState(userSongs)
 
 	const removeSong = () => {
-		ownedSongs[song.title] = false;
-		setOwnedSongs(ownedSongs);
-		setIsOwned(false);
-		api.unregisterSong(currentUser.uid, song.title);
-	};
+		ownedSongs[song.title] = false
+		setOwnedSongs(ownedSongs)
+		setIsOwned(false)
+		api.unregisterSong(currentUser.uid, song.title)
+	}
 
 	const addSong = () => {
-		ownedSongs[song.title] = true;
-		setOwnedSongs(ownedSongs);
-		setIsOwned(true);
-		api.registerSong(currentUser.uid, song.title);
-	};
+		ownedSongs[song.title] = true
+		setOwnedSongs(ownedSongs)
+		setIsOwned(true)
+		api.registerSong(currentUser.uid, song.title)
+	}
 
 	return (
-		<div className="song-card" key={index}>
+		<div className='song-card' key={index}>
 			<input
-				className="Input"
+				className='Input'
 				id={index}
-				type="checkbox"
-				style={{ display: "none" }}
-			></input>
+				type='checkbox'
+				style={{ display: "none" }}></input>
 			<label
-				className="Label"
+				className='Label'
 				style={{
 					display: "block",
 					background: `url("assets/covers/${song.title}.png")`,
 					backgroundSize: "cover",
 					filter: `${isOwned ? "grayscale(0)" : "grayscale(1)"}`,
 				}}
-				htmlFor={index}
-			>
-				<div className="options">
+				htmlFor={index}>
+				<div className='options'>
 					{playing ? (
 						<button
-							onClick={() => {
-								setPlaying(false);
-								pauseSong(song.title);
-							}}
-						>
+							onClick={(event) => {
+								setPlaying(false)
+								pauseSong(song.title, event)
+							}}>
 							Pausar
 						</button>
 					) : (
 						<button
 							onClick={() => {
-								setPlaying(true);
-								playSong(song.title);
-							}}
-						>
+								setPlaying(true)
+								playSong(song.title, setPlaying(false))
+							}}>
 							Tocar
 						</button>
 					)}
@@ -72,7 +68,7 @@ const Song = ({ playSong, pauseSong, song, owned, index }) => {
 				</div>
 			</label>
 		</div>
-	);
-};
+	)
+}
 
-export default Song;
+export default Song

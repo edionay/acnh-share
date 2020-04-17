@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 const Navbar = () => (
 	<div
@@ -11,8 +11,7 @@ const Navbar = () => (
 			position: "fixed",
 			top: 0,
 			zIndex: 1,
-		}}
-	></div>
-);
+		}}></div>
+)
 
-export default Navbar;
+export default Navbar
