@@ -39,7 +39,6 @@ const Song = ({ playSong, pauseSong, song, owned, index }) => {
 				style={{
 					display: "block",
 					background: `url("assets/covers/${song.title}.png")`,
-					// height: 200 + "px",
 					backgroundSize: "cover",
 					filter: `${isOwned ? "grayscale(0)" : "grayscale(1)"}`,
 				}}

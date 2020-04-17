@@ -3,7 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import { AuthProvider } from "./Auth";
 
-import SongList from "./pages/SongList";
+import SongList from "./pages/SongList/SongList";
 import Login from "./pages/Login";
 
 export default function Routes() {

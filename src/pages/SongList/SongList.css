@@ -1,0 +1,30 @@
+.song-card {
+	width: 20vw;
+	height: 20vw;
+	display: inline-block;
+	overflow: hidden;
+	padding: 15px;
+}
+
+.Label {
+	height: 100%;
+	border-radius: 4px;
+}
+
+.song-card:hover .options {
+	display: block;
+}
+
+.options {
+	position: absolute;
+	bottom: 0;
+	display: none;
+}
+
+@media only screen and (max-width: 600px) {
+	.song-card {
+		width: 40vw;
+		height: 40vw;
+		padding: 5px;
+	}
+}
