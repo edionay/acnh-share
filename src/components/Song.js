@@ -55,7 +55,7 @@ const Song = ({ playSong, pauseSong, song, owned, index }) => {
 						<button
 							onClick={() => {
 								setPlaying(true)
-								playSong(song.title, setPlaying(false))
+								playSong(song.title)
 							}}>
 							Tocar
 						</button>
