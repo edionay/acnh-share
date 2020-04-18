@@ -5,5 +5,5 @@ This software is intended to provide a sharing platform for Animal Crossing New 
 ## Main features (so far)
 
 - Song list
- Users can play and favorite songs they own.
+-- Users can play and favorite songs they own.
  
