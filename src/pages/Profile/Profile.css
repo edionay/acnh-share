@@ -1,0 +1,7 @@
+.profile-card {
+	width: 20vw;
+	height: 20vw;
+	display: inline-block;
+	overflow: hidden;
+	padding: 15px;
+}

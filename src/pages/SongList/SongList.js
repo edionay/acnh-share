@@ -59,6 +59,7 @@ const SongList = () => {
 	};
 
 	useEffect(() => {
+		console.log("usuário", currentUser);
 		api.getUserSongs(currentUser.uid).then((songs) => {
 			setUserSongs(songs);
 		});
