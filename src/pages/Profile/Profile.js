@@ -1,68 +1,67 @@
-import React, { useState, useEffect, useContext } from "react";
-import "./Profile.css";
+import React, { useState, useEffect, useContext } from "react"
+import "./Profile.css"
 
-import api from "../../api/firebase";
-import { AuthContext } from "../../Auth";
+import api from "../../api/firebase"
+import { AuthContext } from "../../Auth"
 
 const Profile = () => {
-	const { currentUser } = useContext(AuthContext);
-	// console.log(currentUser);
+	const { currentUser } = useContext(AuthContext)
+	console.log("Current User", currentUser)
 	// Aqui ele imprime
 
-	const [friendCode, setFriendCode] = useState();
+	const [friendCode, setFriendCode] = useState()
 
 	useEffect(() => {
-		console.log("aqui", currentUser);
+		console.log("aqui", currentUser)
 		// Aqui dá nulo
-		api.getUserSongs("123").then((songs) => {
-			// console.log(songs);
-		});
-	}, []);
+		if (currentUser) {
+			api.getUserSongs(currentUser.uid).then((songs) => {
+				// console.log(songs);
+			})
+		}
+	}, [currentUser])
 
 	const saveProfile = async () => {
 		await api.saveProfile("123", {
 			friendCode: "1234-5678-9102",
 			profilePicture: "assets/profile-pictures/isabelle.png",
-		});
-	};
+		})
+	}
 
 	return (
 		<div>
 			<h1>Perfil</h1>
 
-			<div className="profile-card">
+			<div className='profile-card'>
 				<input
-					className="Input"
-					type="checkbox"
-					style={{ display: "none" }}
-				></input>
+					className='Input'
+					type='checkbox'
+					style={{ display: "none" }}></input>
 				<label
-					className="Label"
+					className='Label'
 					style={{
 						display: "block",
 						backgroundImage: `url("assets/profile-pictures/isabelle.png")`,
 						backgroundSize: "cover",
-					}}
-				></label>
+					}}></label>
 			</div>
 
 			<div>
 				<label>Apelido:</label>
-				<input type="text"></input>
+				<input type='text'></input>
 			</div>
 			<div>
 				<label>Friend Code:</label>
-				<input type="text"></input>
+				<input type='text'></input>
 			</div>
 			<button
 				onClick={() => {
-					saveProfile();
-				}}
-			>
+					saveProfile()
+				}}>
 				Salvar
 			</button>
 		</div>
-	);
-};
+	)
+}
 
-export default Profile;
+export default Profile
