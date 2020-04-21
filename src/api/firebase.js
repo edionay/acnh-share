@@ -12,6 +12,16 @@ const getUserSongs = async (uid) => {
 	else return {};
 };
 
+const getUserData = async (uid) => {
+	const userDocument = await app
+		.firestore()
+		.collection("users")
+		.doc(uid)
+		.get();
+	if (userDocument.exists) return userDocument.data();
+	else return {};
+};
+
 const registerSong = async (userId, songTitle) => {
 	await app
 		.firestore()
@@ -59,6 +69,7 @@ const api = {
 	unregisterSong,
 	getUserSongs,
 	saveProfile,
+	getUserData,
 };
 
 export default api;
