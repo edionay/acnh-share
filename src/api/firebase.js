@@ -8,7 +8,7 @@ const getUserSongs = async (uid) => {
 		.collection("users")
 		.doc(uid)
 		.get();
-	if (userDocument.exists) return userDocument.data().songs;
+	if (userDocument.exists) return userDocument.data();
 	else return {};
 };
 
@@ -38,6 +38,22 @@ const registerSong = async (userId, songTitle) => {
 	return true;
 };
 
+const addToWishList = async (userId, songTitle) => {
+	await app
+		.firestore()
+		.collection("users")
+		.doc(userId)
+		.set(
+			{
+				wishes: {
+					[songTitle]: true,
+				},
+			},
+			{ merge: true }
+		);
+	return true;
+};
+
 const unregisterSong = async (userId, songTitle) => {
 	await app
 		.firestore()
@@ -46,6 +62,22 @@ const unregisterSong = async (userId, songTitle) => {
 		.set(
 			{
 				songs: {
+					[songTitle]: false,
+				},
+			},
+			{ merge: true }
+		);
+	return true;
+};
+
+const removeFromWishes = async (userId, songTitle) => {
+	await app
+		.firestore()
+		.collection("users")
+		.doc(userId)
+		.set(
+			{
+				wishes: {
 					[songTitle]: false,
 				},
 			},
@@ -70,6 +102,27 @@ const api = {
 	getUserSongs,
 	saveProfile,
 	getUserData,
+	addToWishList,
+	removeFromWishes,
 };
 
 export default api;
+
+class User {
+	/**
+	 *
+	 * @param {string} nickname
+	 * @param {string} friendCode
+	 * @param {string} nativeFruit
+	 * @param {string} islandName
+	 */
+	constructor(nickname, friendCode, nativeFruit, islandName) {
+		this.nickname = nickname;
+		this.friendCode = friendCode;
+		this.nativeFruit = nativeFruit;
+		this.islandName = islandName;
+		this.ownedSongs = {};
+		this.wishList = {};
+		this.frientList = [];
+	}
+}
