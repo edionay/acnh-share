@@ -1,6 +1,15 @@
-import app from "../base";
-import React, { AuthContext } from "../Auth";
-import { useContext } from "react";
+import app from "../base"
+import React, { AuthContext } from "../Auth"
+import { useContext } from "react"
+
+const getUserFriends = async (uid) => {
+	const userDocument = await app
+		.firestore()
+		.collection("users")
+		.doc(uid)
+		.get()
+	if (userDocument.exists) return userDocument.data().friends
+}
 
 const getUserSongs = async (uid) => {
 	const userDocument = await app
@@ -34,9 +43,9 @@ const registerSong = async (userId, songTitle) => {
 				},
 			},
 			{ merge: true }
-		);
-	return true;
-};
+		)
+	return true
+}
 
 const addToWishList = async (userId, songTitle) => {
 	await app
@@ -66,9 +75,9 @@ const unregisterSong = async (userId, songTitle) => {
 				},
 			},
 			{ merge: true }
-		);
-	return true;
-};
+		)
+	return true
+}
 
 const removeFromWishes = async (userId, songTitle) => {
 	await app
@@ -92,21 +101,22 @@ const saveProfile = async (uid, profile) => {
 			profile: profile,
 		},
 		{ merge: true }
-	);
-	return true;
-};
+	)
+	return true
+}
 
 const api = {
 	registerSong,
 	unregisterSong,
 	getUserSongs,
+	getUserFriends,
 	saveProfile,
 	getUserData,
 	addToWishList,
 	removeFromWishes,
 };
 
-export default api;
+export default api
 
 class User {
 	/**

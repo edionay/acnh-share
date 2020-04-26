@@ -26,6 +26,13 @@ const SongList = () => {
 	const [allSongsFilter, setAllSongsFilter] = useState(true);
 	const [selectedTab, setSelectedTab] = useState("all-songs");
 
+	useEffect(() => {
+		console.log("usuário", currentUser)
+		api.getUserSongs(currentUser.uid).then((songs) => {
+			setUserSongs(songs)
+		})
+	}, [currentUser.uid])
+
 	const removeSong = async (songTitle) => {
 		await api.unregisterSong(currentUser.uid, songTitle);
 		api.getUserSongs(currentUser.uid).then((userData) => {
