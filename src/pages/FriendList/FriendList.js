@@ -34,10 +34,10 @@ const FriendList = () => {
 				{friendsData.map((friend, index) => (
 					<div className='friendList-item' key={index}>
 						<h4>
-							{friend.profile.nickname} |{' '}
-							{friend.profile.islandName}
+							{friend.data().profile.nickname} |{' '}
+							{friend.data().profile.islandName}
 						</h4>
-						<Link to={'/profile/' + friend.profile.id}>
+						<Link to={'/profile/' + friend.id}>
 							<button>Visit</button>
 						</Link>
 					</div>
