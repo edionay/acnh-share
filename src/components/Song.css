@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400;500;600&display=swap");
 .song-card {
-	width: 20vw;
-	height: 20vw;
+	width: 15vw;
+	height: 15vw;
 	display: inline-block;
 	overflow: hidden;
 	padding: 15px;
