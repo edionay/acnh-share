@@ -1,31 +1,31 @@
-import React, { useState, useEffect, useContext } from "react";
-import "./Profile.css";
+import React, { useState, useEffect, useContext } from "react"
+import "./Profile.css"
 
-import api from "../../api/firebase";
-import { AuthContext } from "../../Auth";
+import api from "../../api/firebase"
+import { AuthContext } from "../../Auth"
 
 const Profile = () => {
-	const { currentUser } = useContext(AuthContext);
+	const { currentUser } = useContext(AuthContext)
 
-	const [friendCode, setFriendCode] = useState("");
-	const [nickname, setNickname] = useState("");
-	const [hemisphere, setHemisphere] = useState("");
-	const [islandName, setIslandName] = useState("");
-	const [nativeFruit, setNativeFruit] = useState("");
-	const [profilePicture, setProfilePicture] = useState("");
+	const [friendCode, setFriendCode] = useState("")
+	const [nickname, setNickname] = useState("")
+	const [hemisphere, setHemisphere] = useState("")
+	const [islandName, setIslandName] = useState("")
+	const [nativeFruit, setNativeFruit] = useState("")
+	const [profilePicture, setProfilePicture] = useState("")
 
 	useEffect(() => {
 		if (currentUser) {
 			api.getUserData(currentUser.uid).then((userData) => {
-				setHemisphere(userData.profile.hemisphere);
-				setNickname(userData.profile.nickname);
-				setIslandName(userData.profile.islandName);
-				setNativeFruit(userData.profile.nativeFruit);
-				setFriendCode(userData.profile.friendCode);
-				setProfilePicture(userData.profile.profilePicture);
-			});
+				setHemisphere(userData.data().profile.hemisphere)
+				setNickname(userData.data().profile.nickname)
+				setIslandName(userData.data().profile.islandName)
+				setNativeFruit(userData.data().profile.nativeFruit)
+				setFriendCode(userData.data().profile.friendCode)
+				setProfilePicture(userData.data().profile.profilePicture)
+			})
 		}
-	}, [currentUser]);
+	}, [currentUser])
 
 	const saveProfile = async () => {
 		const userData = {
@@ -35,11 +35,11 @@ const Profile = () => {
 			nativeFruit,
 			friendCode,
 			profilePicture,
-		};
-		await api.saveProfile(currentUser.uid, userData);
-	};
+		}
+		await api.saveProfile(currentUser.uid, userData)
+	}
 
-	const profilePictures = ["Isabelle", "Mario", "Luigi", "KK", "Peach"];
+	const profilePictures = ["Isabelle", "Mario", "Luigi", "KK", "Peach"]
 
 	return (
 		<div>
@@ -55,8 +55,9 @@ const Profile = () => {
 							name="profilePicture"
 							value={pictureName}
 							checked={pictureName === profilePicture}
-							onChange={(e) => setProfilePicture(e.target.value)}
-						></input>
+							onChange={(e) =>
+								setProfilePicture(e.target.value)
+							}></input>
 						<label
 							className="Label"
 							htmlFor={pictureName}
@@ -64,10 +65,9 @@ const Profile = () => {
 								display: "block",
 								backgroundImage: `url("assets/profile-pictures/${pictureName}.png")`,
 								backgroundSize: "cover",
-							}}
-						></label>
+							}}></label>
 					</div>
-				);
+				)
 			})}
 
 			<div>
@@ -75,34 +75,30 @@ const Profile = () => {
 				<input
 					onChange={(e) => setNickname(e.target.value)}
 					type="text"
-					defaultValue={nickname}
-				></input>
+					defaultValue={nickname}></input>
 			</div>
 			<div>
 				<label>Friend Code:</label>
 				<input
 					onChange={(e) => {
-						setFriendCode(e.target.value);
+						setFriendCode(e.target.value)
 					}}
 					type="text"
-					defaultValue={friendCode}
-				></input>
+					defaultValue={friendCode}></input>
 			</div>
 			<div>
 				<label>Nome da ilha:</label>
 				<input
 					onChange={(e) => setIslandName(e.target.value)}
 					type="text"
-					defaultValue={islandName}
-				></input>
+					defaultValue={islandName}></input>
 			</div>
 			<div>
 				<label>Fruta nativa:</label>
 				<select
 					name="select"
 					value={nativeFruit}
-					onChange={(e) => setNativeFruit(e.target.value)}
-				>
+					onChange={(e) => setNativeFruit(e.target.value)}>
 					<option value="">Selecione...</option>
 					<option value="pear">Pera</option>
 					<option value="orange">Laranja</option>
@@ -116,8 +112,7 @@ const Profile = () => {
 				<select
 					name="select"
 					value={hemisphere}
-					onChange={(e) => setHemisphere(e.target.value)}
-				>
+					onChange={(e) => setHemisphere(e.target.value)}>
 					<option value="">Selecione...</option>
 					<option value="north">Norte</option>
 					<option value="south">Sul</option>
@@ -126,13 +121,12 @@ const Profile = () => {
 
 			<button
 				onClick={() => {
-					saveProfile();
-				}}
-			>
+					saveProfile()
+				}}>
 				Salvar
 			</button>
 		</div>
-	);
-};
+	)
+}
 
-export default Profile;
+export default Profile
