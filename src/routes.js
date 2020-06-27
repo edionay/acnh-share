@@ -7,20 +7,26 @@ import SongList from "./pages/SongList/SongList"
 import Login from "./pages/Login"
 import Profile from "./pages/Profile/Profile"
 import Friendlist from "./pages/FriendList/FriendList"
+import FriendProfile from "./pages/FriendProfile/FriendProfile"
 
 export default function Routes() {
 	return (
 		<AuthProvider>
 			<BrowserRouter>
 				<div>
-					<PrivateRoute exact path='/' component={SongList} />
-					<PrivateRoute exact path='/profile' component={Profile} />
+					<PrivateRoute exact path="/" component={SongList} />
+					<PrivateRoute exact path="/profile" component={Profile} />
 					<PrivateRoute
 						exact
-						path='/friendlist'
+						path="/profile/:id"
+						component={FriendProfile}
+					/>
+					<PrivateRoute
+						exact
+						path="/friendlist"
 						component={Friendlist}
 					/>
-					<Route exact path='/login' component={Login} />
+					<Route exact path="/login" component={Login} />
 				</div>
 			</BrowserRouter>
 		</AuthProvider>

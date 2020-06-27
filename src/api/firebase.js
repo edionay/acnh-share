@@ -1,11 +1,9 @@
-import app from '../base'
-import React, { AuthContext } from '../Auth'
-import { useContext } from 'react'
+import app from "../base"
 
 const getUserFriends = async (uid) => {
 	const userDocument = await app
 		.firestore()
-		.collection('users')
+		.collection("users")
 		.doc(uid)
 		.get()
 	if (userDocument.exists) return userDocument.data().friends
@@ -15,7 +13,7 @@ const getUserFriends = async (uid) => {
 const getUserSongs = async (uid) => {
 	const userDocument = await app
 		.firestore()
-		.collection('users')
+		.collection("users")
 		.doc(uid)
 		.get()
 	if (userDocument.exists) return userDocument.data()
@@ -25,7 +23,7 @@ const getUserSongs = async (uid) => {
 const getUserData = async (uid) => {
 	const userDocument = await app
 		.firestore()
-		.collection('users')
+		.collection("users")
 		.doc(uid)
 		.get()
 	if (userDocument.exists) return userDocument
@@ -35,7 +33,7 @@ const getUserData = async (uid) => {
 const registerSong = async (userId, songTitle) => {
 	await app
 		.firestore()
-		.collection('users')
+		.collection("users")
 		.doc(userId)
 		.set(
 			{
@@ -51,7 +49,7 @@ const registerSong = async (userId, songTitle) => {
 const addToWishList = async (userId, songTitle) => {
 	await app
 		.firestore()
-		.collection('users')
+		.collection("users")
 		.doc(userId)
 		.set(
 			{
@@ -67,7 +65,7 @@ const addToWishList = async (userId, songTitle) => {
 const unregisterSong = async (userId, songTitle) => {
 	await app
 		.firestore()
-		.collection('users')
+		.collection("users")
 		.doc(userId)
 		.set(
 			{
@@ -83,7 +81,7 @@ const unregisterSong = async (userId, songTitle) => {
 const removeFromWishes = async (userId, songTitle) => {
 	await app
 		.firestore()
-		.collection('users')
+		.collection("users")
 		.doc(userId)
 		.set(
 			{
@@ -97,7 +95,7 @@ const removeFromWishes = async (userId, songTitle) => {
 }
 
 const saveProfile = async (uid, profile) => {
-	await app.firestore().collection('users').doc(uid).set(
+	await app.firestore().collection("users").doc(uid).set(
 		{
 			profile: profile,
 		},
