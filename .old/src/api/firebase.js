@@ -1,26 +1,34 @@
-import app from "../base";
-import React, { AuthContext } from "../Auth";
-import { useContext } from "react";
+import app from "../base"
+
+const getUserFriends = async (uid) => {
+	const userDocument = await app
+		.firestore()
+		.collection("users")
+		.doc(uid)
+		.get()
+	if (userDocument.exists) return userDocument.data().friends
+	else return {}
+}
 
 const getUserSongs = async (uid) => {
 	const userDocument = await app
 		.firestore()
 		.collection("users")
 		.doc(uid)
-		.get();
-	if (userDocument.exists) return userDocument.data();
-	else return {};
-};
+		.get()
+	if (userDocument.exists) return userDocument.data()
+	else return {}
+}
 
 const getUserData = async (uid) => {
 	const userDocument = await app
 		.firestore()
 		.collection("users")
 		.doc(uid)
-		.get();
-	if (userDocument.exists) return userDocument.data();
-	else return {};
-};
+		.get()
+	if (userDocument.exists) return userDocument
+	else return {}
+}
 
 const registerSong = async (userId, songTitle) => {
 	await app
@@ -34,9 +42,9 @@ const registerSong = async (userId, songTitle) => {
 				},
 			},
 			{ merge: true }
-		);
-	return true;
-};
+		)
+	return true
+}
 
 const addToWishList = async (userId, songTitle) => {
 	await app
@@ -50,9 +58,9 @@ const addToWishList = async (userId, songTitle) => {
 				},
 			},
 			{ merge: true }
-		);
-	return true;
-};
+		)
+	return true
+}
 
 const unregisterSong = async (userId, songTitle) => {
 	await app
@@ -66,9 +74,9 @@ const unregisterSong = async (userId, songTitle) => {
 				},
 			},
 			{ merge: true }
-		);
-	return true;
-};
+		)
+	return true
+}
 
 const removeFromWishes = async (userId, songTitle) => {
 	await app
@@ -82,9 +90,9 @@ const removeFromWishes = async (userId, songTitle) => {
 				},
 			},
 			{ merge: true }
-		);
-	return true;
-};
+		)
+	return true
+}
 
 const saveProfile = async (uid, profile) => {
 	await app.firestore().collection("users").doc(uid).set(
@@ -92,21 +100,22 @@ const saveProfile = async (uid, profile) => {
 			profile: profile,
 		},
 		{ merge: true }
-	);
-	return true;
-};
+	)
+	return true
+}
 
 const api = {
 	registerSong,
 	unregisterSong,
 	getUserSongs,
+	getUserFriends,
 	saveProfile,
 	getUserData,
 	addToWishList,
 	removeFromWishes,
-};
+}
 
-export default api;
+export default api
 
 class User {
 	/**
@@ -117,12 +126,12 @@ class User {
 	 * @param {string} islandName
 	 */
 	constructor(nickname, friendCode, nativeFruit, islandName) {
-		this.nickname = nickname;
-		this.friendCode = friendCode;
-		this.nativeFruit = nativeFruit;
-		this.islandName = islandName;
-		this.ownedSongs = {};
-		this.wishList = {};
-		this.frientList = [];
+		this.nickname = nickname
+		this.friendCode = friendCode
+		this.nativeFruit = nativeFruit
+		this.islandName = islandName
+		this.ownedSongs = {}
+		this.wishList = {}
+		this.frientList = []
 	}
 }

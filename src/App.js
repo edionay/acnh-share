@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { RecoilRoot } from "recoil";
@@ -46,6 +47,22 @@ function App() {
 			</Router>
 		</RecoilRoot>
 	);
+=======
+import React from 'react'
+import Routes from './routes'
+import Navbar from './components/Navbar'
+import './App.css'
+
+function App() {
+	return (
+		<div>
+			{/* <Navbar /> */}
+			<div className='container'>
+				<Routes />
+			</div>
+		</div>
+	)
+>>>>>>> 6ee50f4c4923e6ff847f9e1e3a7914bbe7e32971
 }
 
-export default App;
+export default App
