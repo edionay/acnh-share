@@ -1,0 +1,22 @@
+.song-list {
+	justify-content: center;
+}
+
+.search-input {
+	background-color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: fit-content;
+	padding: 5px 10px;
+	border-radius: 10px;
+	margin: 0 auto;
+}
+
+.search-input input {
+	border: 0;
+}
+
+.search-input label {
+	margin: 0;
+}
