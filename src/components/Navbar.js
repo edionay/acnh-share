@@ -1,17 +1,16 @@
-import React from "react"
+import React from "react";
+import "./Navbar.css";
 
 const Navbar = () => (
-	<div
-		style={{
-			marginTop: "-10vh",
-			height: "40vh",
-			width: "100vw",
-			background: "url(./assets/header-background.png)",
-			backgroundRepeat: "repeat-x",
-			position: "fixed",
-			top: 0,
-			zIndex: 1,
-		}}></div>
-)
+	<div class="topnav">
+		<a class="active" href="/">
+			Músicas
+		</a>
+		<a href="#">Amigos</a>
+		<a href="profile">Perfil</a>
+		<a href="#">Desejos</a>
+		<a href="#">Sair</a>
+	</div>
+);
 
-export default Navbar
+export default Navbar;

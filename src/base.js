@@ -3,12 +3,14 @@ import "firebase/auth"
 
 
 const app = firebase.initializeApp({
-    apiKey: process.env.REACT_APP_FIREBASE_KEY,
-    authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
-    databaseURL: process.env.REACT_APP_FIREBASE_DATABASE,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID
+    apiKey: "AIzaSyB-wdDhFB9po8vx_talwR1MaIM7wD8KzQs",
+    authDomain: "acnh-share.firebaseapp.com",
+    databaseURL: "https://acnh-share.firebaseio.com",
+    projectId: "acnh-share",
+    storageBucket: "acnh-share.appspot.com",
+    messagingSenderId: "42593365910",
+    appId: "1:42593365910:web:aaf1ed429ceef53aac37b7",
+    measurementId: "G-F1GV50HXRM"
 })
 
 export default app
